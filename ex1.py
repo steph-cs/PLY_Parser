@@ -1,3 +1,71 @@
+'''
+PROGRAM → STATEMENT |  FUNCLIST | ε 
+FUNCLIST → FUNCDEF FUNCLIST1
+FUNCLIST1 → FUNCLIST | ε 
+FUNCDEF → def ident ( PARAMLIST STATELIST1 ){STATELIST} 
+TYPE → int | float | string 
+
+PARAMLIST → TYPE ident PARAMLIST1 | ε 
+PARAMLIST1 → , PARAMLIST | ε 
+
+STATEMENT → VARDECL ; | 
+ATRIBSTAT ; | 
+PRINTSTAT ; | 
+READSTAT ; | 
+RETURNSTAT ; | 
+IFSTAT | 
+FORSTAT | 
+{STATELIST} | 
+break; | ; 
+
+VARDECL → TYPE ident ARRAY1 
+ARRAY1 → [int_constant] | ε 
+
+ATRIBSTAT → LVALUE = ATRIB 
+ATRIB → EXPRESSION | FUNCCALL | ALLOCEXPRESSION 
+FUNCCALL → ident(PARAMLISTCALL)
+PARAMLISTCALL → ident PARAMLISTCALL1 | ε 
+PARAMLISTCALL1 → , PARAMLISTCALL | ε 
+PRINTSTAT → print EXPRESSION 
+READSTAT → read LVALUE
+
+RETURNSTAT → return RETURNSTAT1 LVALUE
+RETURNSTAT1 → ident | ε 
+LVALUE → ident OPT_NUMEXPRESSION
+OPT_NUMEXPRESSION → [NUMEXPRESSION] | ε
+
+IFSTAT → if(EXPRESSION) STATEMENT IFSTAT1 
+IFSTAT1 → else STATEMENT | ε
+
+FORSTAT → for(ATRIBSTAT; EXPRESSION; ATRIBSTAT)STATEMENT
+
+STATELIST → STATEMENT STATELIST1
+STATELIST1 → STATELIST | ε
+
+ALLOCEXPRESSION → new TYPE [ NUMEXPRESSION ]
+NUMEXPRESSION → TERM NUMEXPRESSION1 
+NUMEXPRESSION1 → OP1 TERM | ε
+OP1 → + | -
+OP2 → * | / | %
+TERM → UNARYEXPR TERM1
+TERM1 → OP2 UNARYEXPR | ε
+ FACTOR → int_constant | 
+float_constant | 
+string_constant | 
+null |
+LVALUE |
+(NUMEXPRESSION)
+UNARYEXPR → OP_FACTOR FACTOR
+OP_FACTOR → OP1 | ε
+
+EXPRESSION → NUMEXPRESSION OPT_EXPRESSION
+OPT_EXPRESSION → OP NUMEXPRESSION | ε
+OP → < | > | <= | >= | == | !=
+
+'''
+
+
+
 #analise lexica
 reserved = {
     'def' : 'DEF' ,
@@ -55,20 +123,46 @@ lexer = lex.lex()
 
 
 #analise sintatica
-def p_statement_func_null(p):
-    "func : DEF IDENT '(' ')' "
-    
-def p_statement_func(p):
-    "func : DEF IDENT '(' expression ')' "
-  
-def p_expression_params(p):
-    '''expression : IDENT ',' expression
-                    | NUMBER ',' expression'''
-   
+def p_program(p):
+    '''program : statement 
+                | funclist
+                | '''
 
-def p_expression_id(p):
-    '''expression : IDENT 
-                    | NUMBER '''
+def p_funclist(p):
+    '''funclist : funcdef funclist1'''
+
+def p_funclist1(p):
+    '''funclist1 : funclist
+                    | '''
+
+def p_funcdef(p):
+    '''funcdef : DEF IDENT '(' paramlist ')' '{' statelist1 '}' '''
+
+def p_type(p):
+    '''ifstat1 : INT 
+                | FLOAT
+                | STRING'''
+
+def p_ifstat(p):
+    '''ifstat1 : IF '(' expression ')' statement ifstat1
+                | '''
+
+def p_ifstat1(p):
+    '''ifstat1 : ELSE statement 
+                | '''
+
+def p_forstat(p):
+    '''forstat : FOR '(' atribstat ';' expression ';' atribstat ')' statement
+                    | '''
+
+def p_statelist(p):
+    '''statelist : statement statelist1
+                    | '''
+
+def p_statelist1(p):
+    '''statelist1 : statelist
+                    | '''
+                             
 
 
 erros_sin = []
