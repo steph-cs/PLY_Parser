@@ -87,7 +87,7 @@ reserved = {
 
  }
  
-tokens = ['IDENT', 'NUMBER'] + list(reserved.values())
+tokens = ['IDENT'] + list(reserved.values())
 
 literals = ['=', '<', '>', '!', '+', '-', '*', '/','%' , '(', ')', '[', ']', ';', ',']
  
@@ -96,10 +96,6 @@ def t_IDENT(t):
     t.type = reserved.get(t.value,'IDENT')    # Check for reserved words
     return t
 
-def t_NUMBER(t):
-    r'\d+'
-    t.value = int(t.value)    
-    return t
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore  = ' \t'
@@ -124,27 +120,94 @@ lexer = lex.lex()
 
 #analise sintatica
 def p_program(p):
-    '''program : statement 
+    '''program : statement
                 | funclist
                 | '''
+        
 
 def p_funclist(p):
     '''funclist : funcdef funclist1'''
 
 def p_funclist1(p):
     '''funclist1 : funclist
-                    | '''
+                | '''
 
 def p_funcdef(p):
     '''funcdef : DEF IDENT '(' paramlist ')' '{' statelist1 '}' '''
 
 def p_type(p):
-    '''ifstat1 : INT 
+    '''type : INT 
                 | FLOAT
                 | STRING'''
 
+def p_paramlist(p):
+    '''paramlist : type IDENT paramlist1
+                | '''
+
+def p_paramlist1(p):
+    '''paramlist1 : ',' paramlist
+                | '''
+
+def p_statement(p):
+    '''statement : vardecl ','
+                | atribstat ','
+                | printstat
+                | readstat
+                | returnstat
+                | ifstat
+                | forstat
+                | '{' statelist '}'
+                | BREAK ';'
+                | ';' '''   
+
+def p_vardecl(p):
+    '''vardecl : type IDENT array1'''  
+
+def p_array1(p):
+    '''array1 : '[' INT_CONSTANT ']' 
+                | ''' 
+
+def p_atribstat(p):
+    '''atribstat : lvalue '=' atrib'''
+
+def p_atrib(p):
+    '''atrib : expression 
+                | funccall
+                | allocexpression'''
+
+def p_funccall(p):
+    '''funccall : IDENT '(' paramlistcall ')' '''
+
+def p_paramlistcall(p):
+    '''paramlistcall : IDENT paramlistcall1
+                | '''
+
+def p_paramlistcall1(p):
+    '''paramlistcall1 : ',' paramlistcall 
+                | '''
+                
+def p_printstat(p):
+    '''printstat : PRINT expression '''
+
+def p_readstat(p):
+    '''readstat : READ lvalue '''
+
+def p_returnstat(p):
+    '''returnstat : RETURN returnstat1 lvalue'''
+
+def p_returnstat1(p):
+    '''returnstat1 : IDENT
+                | '''
+
+def p_lvalue(p):
+    '''lvalue : IDENT opt_numexpression'''
+
+def p_opt_numexpression(p):
+    '''opt_numexpression : '[' numexpression ']'
+                | '''
+
 def p_ifstat(p):
-    '''ifstat1 : IF '(' expression ')' statement ifstat1
+    '''ifstat : IF '(' expression ')' statement ifstat1
                 | '''
 
 def p_ifstat1(p):
@@ -153,16 +216,74 @@ def p_ifstat1(p):
 
 def p_forstat(p):
     '''forstat : FOR '(' atribstat ';' expression ';' atribstat ')' statement
-                    | '''
+                | '''
 
 def p_statelist(p):
     '''statelist : statement statelist1
-                    | '''
+                | '''
+
 
 def p_statelist1(p):
     '''statelist1 : statelist
-                    | '''
-                             
+                | '''
+
+def p_op1(p):
+    '''op1 : '+'
+                | '-' '''
+
+def p_op2(p):
+    '''op2 : '*'
+                | '/' 
+                | '%' '''
+
+def p_op(p):
+    '''op : '<' 
+                | '>' 
+                | '<' '=' 
+                | '>' '=' 
+                | '=' '='
+                | '!' '=' '''
+
+def p_allocexpression(p):
+    '''allocexpression : NEW type '[' numexpression ']' '''
+
+def p_numexpression(p):
+    '''numexpression : term numexpression1'''
+
+def p_numexpression1(p):
+    '''numexpression1 : op1 term
+                | '''
+
+def p_term(p):
+    '''term : unaryexpr term1'''
+
+def p_term1(p):
+    '''term1 : op2 unaryexpr
+                | '''
+
+def p_factor(p):
+    '''factor : INT_CONSTANT
+                | FLOAT_CONSTANT
+                | STRING_CONSTANT
+                | NULL
+                | lvalue
+                | '(' numexpression ')' '''                             
+
+def p_unaryexpr(p):
+    '''unaryexpr : op_factor factor'''
+
+def p_op_factor(p):
+    '''op_factor : op1
+                | '''
+
+def p_expression(p):
+    '''expression : numexpression opt_expression '''
+
+def p_opt_expression(p):
+    '''opt_expression : op numexpression
+                | '''
+
+
 
 
 erros_sin = []
