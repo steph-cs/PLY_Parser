@@ -2,7 +2,7 @@
 PROGRAM → STATEMENT |  FUNCLIST | ε 
 FUNCLIST → FUNCDEF FUNCLIST1
 FUNCLIST1 → FUNCLIST | ε 
-FUNCDEF → def ident ( PARAMLIST STATELIST1 ){STATELIST} 
+FUNCDEF → def ident ( PARAMLIST ){STATELIST} 
 TYPE → int | float | string 
 
 PARAMLIST → TYPE ident PARAMLIST1 | ε 
@@ -29,7 +29,7 @@ PARAMLISTCALL1 → , PARAMLISTCALL | ε
 PRINTSTAT → print EXPRESSION 
 READSTAT → read LVALUE
 
-RETURNSTAT → return RETURNSTAT1 LVALUE
+RETURNSTAT → return RETURNSTAT1
 RETURNSTAT1 → ident | ε 
 LVALUE → ident OPT_NUMEXPRESSION
 OPT_NUMEXPRESSION → [NUMEXPRESSION] | ε
@@ -89,7 +89,7 @@ reserved = {
  
 tokens = ['IDENT'] + list(reserved.values())
 
-literals = ['=', '<', '>', '!', '+', '-', '*', '/','%' , '(', ')', '[', ']', ';', ',']
+literals = ['=', '<', '>', '!', '+', '-', '*', '/','%' , '(', ')', '[', ']', '{', '}' ,';', ',']
  
 def t_IDENT(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
@@ -119,10 +119,12 @@ lexer = lex.lex()
 
 
 #analise sintatica
+
+        
 def p_program(p):
     '''program : statement
                 | funclist
-                | '''
+                | empty'''
         
 
 def p_funclist(p):
@@ -130,10 +132,10 @@ def p_funclist(p):
 
 def p_funclist1(p):
     '''funclist1 : funclist
-                | '''
+                | empty'''
 
 def p_funcdef(p):
-    '''funcdef : DEF IDENT '(' paramlist ')' '{' statelist1 '}' '''
+    '''funcdef : DEF IDENT '(' paramlist ')' '{' statelist '}' '''
 
 def p_type(p):
     '''type : INT 
@@ -142,11 +144,11 @@ def p_type(p):
 
 def p_paramlist(p):
     '''paramlist : type IDENT paramlist1
-                | '''
+                | empty'''
 
 def p_paramlist1(p):
     '''paramlist1 : ',' paramlist
-                | '''
+                | empty'''
 
 def p_statement(p):
     '''statement : vardecl ','
@@ -165,7 +167,7 @@ def p_vardecl(p):
 
 def p_array1(p):
     '''array1 : '[' INT_CONSTANT ']' 
-                | ''' 
+                | empty''' 
 
 def p_atribstat(p):
     '''atribstat : lvalue '=' atrib'''
@@ -180,11 +182,11 @@ def p_funccall(p):
 
 def p_paramlistcall(p):
     '''paramlistcall : IDENT paramlistcall1
-                | '''
+                | empty'''
 
 def p_paramlistcall1(p):
     '''paramlistcall1 : ',' paramlistcall 
-                | '''
+                | empty'''
                 
 def p_printstat(p):
     '''printstat : PRINT expression '''
@@ -193,39 +195,39 @@ def p_readstat(p):
     '''readstat : READ lvalue '''
 
 def p_returnstat(p):
-    '''returnstat : RETURN returnstat1 lvalue'''
+    '''returnstat : RETURN returnstat1'''
 
 def p_returnstat1(p):
     '''returnstat1 : IDENT
-                | '''
+                | empty'''
 
 def p_lvalue(p):
     '''lvalue : IDENT opt_numexpression'''
 
 def p_opt_numexpression(p):
     '''opt_numexpression : '[' numexpression ']'
-                | '''
+                | empty'''
 
 def p_ifstat(p):
     '''ifstat : IF '(' expression ')' statement ifstat1
-                | '''
+                | empty'''
 
 def p_ifstat1(p):
     '''ifstat1 : ELSE statement 
-                | '''
+                | empty'''
 
 def p_forstat(p):
     '''forstat : FOR '(' atribstat ';' expression ';' atribstat ')' statement
-                | '''
+                | empty'''
 
 def p_statelist(p):
     '''statelist : statement statelist1
-                | '''
+                | empty'''
 
 
 def p_statelist1(p):
     '''statelist1 : statelist
-                | '''
+                | empty'''
 
 def p_op1(p):
     '''op1 : '+'
@@ -252,14 +254,14 @@ def p_numexpression(p):
 
 def p_numexpression1(p):
     '''numexpression1 : op1 term
-                | '''
+                | empty'''
 
 def p_term(p):
     '''term : unaryexpr term1'''
 
 def p_term1(p):
     '''term1 : op2 unaryexpr
-                | '''
+                | empty'''
 
 def p_factor(p):
     '''factor : INT_CONSTANT
@@ -274,17 +276,19 @@ def p_unaryexpr(p):
 
 def p_op_factor(p):
     '''op_factor : op1
-                | '''
+                | empty'''
 
 def p_expression(p):
     '''expression : numexpression opt_expression '''
 
 def p_opt_expression(p):
     '''opt_expression : op numexpression
-                | '''
+                | empty'''
 
 
-
+def p_empty(p):
+    'empty : '
+    pass
 
 erros_sin = []
 def p_error(p):
