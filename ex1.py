@@ -82,7 +82,7 @@ reserved = {
     'new' : 'NEW', 
     'int_constant': 'INT_CONSTANT',
     'float_constant':'FLOAT_CONSTANT', 
-    'string_constante':'STRING_CONSTANT', 
+    'string_constant':'STRING_CONSTANT', 
     'null' :'NULL'
 
  }
@@ -95,6 +95,10 @@ def t_IDENT(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = reserved.get(t.value,'IDENT')    # Check for reserved words
     return t
+
+t_INT_CONSTANT = r'[0-9]+'
+t_FLOAT_CONSTANT = r'[0-9]+.[0-9]+'
+t_STRING_CONSTANT = r'\"([^\\\"]|\\.)*\"'
 
 
 # A string containing ignored characters (spaces and tabs)
