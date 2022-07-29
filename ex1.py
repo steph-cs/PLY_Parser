@@ -282,39 +282,31 @@ def p_error(p):
     else:
         erros_sin.append("Syntax error at EOF")
 
-
-        
-
 import ply.yacc as yacc
 parser = yacc.yacc()
- 
 
+erros_lex = []
+f = open("exemplo1.lcc", "r")
+file_content = f.read()
 
+print(file_content)
+
+lexer.input(file_content)
 while True:
-    erros_lex = []
-    erros_sin = []
-    try:
-        s = input('cod > ')
-    except EOFError:
+    tok = lexer.token()
+    if not tok:
         break
-    if not s: continue
-    #analise lexica
-    lexer.input(s)
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break
-        print(tok)
-    print("Erros lexicos = '%d'" % len(erros_lex))
-    for err in erros_lex:
-        print(err)
-    #se n houver erros lexicos -> analise sintatica
-    if len(erros_lex) == 0:
-        #analise sintatica
-        result = parser.parse(s)
-        if len(erros_sin) == 0:
-            print("Compilado sem erros.")
-        else:
-            print("Erros sintaticos = '%d'" % len(erros_sin))
-            for err in erros_sin:
-                print(err)  
+    print(tok)
+print("Erros lexicos = '%d'" % len(erros_lex))
+for err in erros_lex:
+    print(err)
+#se n houver erros lexicos -> analise sintatica
+if len(erros_lex) == 0:
+    #analise sintatica
+    result = parser.parse(file_content)
+    if len(erros_sin) == 0:
+        print("Compilado sem erros.")
+    else:
+        print("Erros sintaticos = '%d'" % len(erros_sin))
+        for err in erros_sin:
+            print(err)
