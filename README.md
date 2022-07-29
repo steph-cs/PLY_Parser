@@ -13,7 +13,7 @@ Trabalho da disciplina INE5622 Introdução a Compiladores da Universidade Feder
 - Python 3.8.10 ou superior
 
 ## Instruções
-O analisador léxico e analisador sintático (ALAS) foi desenvolvido utilizando [PLY](https://github.com/dabeaz/ply). A pasta contendo PLY já está inserida no projeto.
+O analisador léxico e analisador sintático (ALAS) foram desenvolvidos em um único arquivo `alas.py` utilizando [PLY](https://github.com/dabeaz/ply). A pasta contendo PLY já está inserida no projeto.
 
 Para executar o analisador léxico e sintático, execute o comando:
 ```
