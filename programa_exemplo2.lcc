@@ -1,0 +1,102 @@
+def main() {
+    int ladoQuadrado;
+    int areaQuadrado;
+    int perimetroQuadrado;
+
+    ladoQuadrado = 5;
+    areaQuadrado = calculaAreaDeQuadrado(ladoQuadrado);
+    perimetroQuadrado = calculaPerimetroDeQuadrado(ladoQuadrado);
+
+    ladoQuadrado = 7;
+    areaQuadrado = calculaAreaDeQuadrado(ladoQuadrado);
+    perimetroQuadrado = calculaPerimetroDeQuadrado(ladoQuadrado);
+
+    ladoQuadrado = 21;
+    areaQuadrado = calculaAreaDeQuadrado(ladoQuadrado);
+    perimetroQuadrado = calculaPerimetroDeQuadrado(ladoQuadrado);
+
+    ladoQuadrado = 2;
+    areaQuadrado = calculaAreaDeQuadrado(ladoQuadrado);
+    perimetroQuadrado = calculaPerimetroDeQuadrado(ladoQuadrado);
+
+    int ladoARetangulo;
+    int ladoBRetangulo;
+    int areaRetangulo;
+    int perimetroRetangulo;
+
+    ladoARetangulo = 6;
+    ladoBRetangulo = 10;
+    areaRetangulo = calculaAreaDeRetangulo(ladoARetangulo, ladoBRetangulo);
+    perimetroRetangulo = calculaPerimetroDeRetangulo(ladoARetangulo, ladoBRetangulo);
+
+    ladoARetangulo = 5;
+    ladoBRetangulo = 18;
+    areaRetangulo = calculaAreaDeRetangulo(ladoARetangulo, ladoBRetangulo);
+    perimetroRetangulo = calculaPerimetroDeRetangulo(ladoARetangulo, ladoBRetangulo);
+
+    ladoARetangulo = 3;
+    ladoBRetangulo = 3;
+    areaRetangulo = calculaAreaDeRetangulo(ladoARetangulo, ladoBRetangulo);
+    perimetroRetangulo = calculaPerimetroDeRetangulo(ladoARetangulo, ladoBRetangulo);
+
+    ladoARetangulo = 2812;
+    ladoBRetangulo = 1288;
+    areaRetangulo = calculaAreaDeRetangulo(ladoARetangulo, ladoBRetangulo);
+    perimetroRetangulo = calculaPerimetroDeRetangulo(ladoARetangulo, ladoBRetangulo);
+}
+
+
+def calculaAreaDeQuadrado(int lado) {
+  int area;
+  area = lado * lado;
+
+  print "Área do quadrado de lado ";
+  print lado;
+  print ": ";
+  print area;
+
+  return;
+}
+
+
+def calculaPerimetroDeQuadrado(int lado) {
+  int perimetro;
+  perimetro = lado * 4;
+
+  print "Perímetro do quadrado de lado ";
+  print lado;
+  print ": ";
+  print perimetro;
+
+  return;
+}
+
+
+def calculaAreaDeRetangulo(int ladoA, int ladoB) {
+  int area;
+  area = ladoA * ladoB;
+
+  print "Área do retangulo de lado ";
+  print ladoA;
+  print " e lado ";
+  print ladoB;
+  print ": ";
+  print area;
+
+  return;
+}
+
+
+def calculaPerimetroDeRetangulo(int ladoA, int ladoB) {
+  int perimetro;
+  perimetro = ladoA * 2 + ladoB * 2;
+
+  print "Perímetro do retangulo de lado ";
+  print ladoA;
+  print " e lado ";
+  print ladoB;
+  print ": ";
+  print perimetro;
+
+  return;
+}

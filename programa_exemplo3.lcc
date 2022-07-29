@@ -1,0 +1,103 @@
+def main() {
+    int auxA;
+    int auxB;
+    int valorDeRetorno;
+
+    print "Se 10 é primo:";
+    auxA = 10;
+    valorDeRetorno = ehPrimo(auxA);
+
+    print "Se 7 é primo:";
+    auxA = 7;
+    valorDeRetorno = ehPrimo(auxA);
+
+    auxA = 18;
+    auxB = 3;
+    print "18 elevado a 3:";
+    valorDeRetorno = potencia(auxA, auxB);
+
+    auxA = 5;
+    auxB = 2;
+    print "5 elevado a 2";
+    valorDeRetorno = potencia(auxA, auxB);
+
+    auxA = 14400;
+    print "raiz quadrada de 14400";
+    valorDeRetorno = raizQuadrada(auxA);
+
+    auxA = 16 ;
+    print "raiz quadrada de 16";
+    valorDeRetorno = raizQuadrada(auxA);
+
+    auxA = 25;
+    print "raiz quadrada de 25";
+    valorDeRetorno = raizQuadrada(auxA);
+}
+
+
+def ehPrimo(int n) {
+    if(n <= 3){
+        if (n > 1) {
+            print "É primo";
+        } else {
+            print "Não é primo";
+        }
+        return;
+    }
+
+    if (n % 2 == 0) {
+        print "Não é primo";
+        return;
+    }
+
+     if (n % 3 == 0) {
+        print "Não é primo";
+        return;
+     }
+
+    int i;
+    for (i = 5; n >= (i * i); i = i + 6){
+        if ((n % i) == 0) {
+            print "Não é primo";
+            return;
+        }
+        int tmp;
+        tmp = i + 2;
+
+        if ((n % tmp) == 0) {
+            print "Não é primo";
+            return;
+        }
+    }
+
+    print "É primo";
+    return;
+}
+
+
+def potencia(int n, int e) {
+    int output;
+    output = 1;
+    int i;
+    for (i = 0; i < e; i = i + 1) {
+        output = output * n;
+    }
+
+    print "O resultado da operação é ";
+    print output;
+
+    return;
+}
+
+
+def raizQuadrada(int n) {
+    float result;
+
+    result = n * (1/2);
+    print("A raiz quadrada de");
+    print(n);
+    print("é");
+    print(result);
+
+    return;
+}

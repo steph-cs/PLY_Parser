@@ -1,0 +1,108 @@
+def main()
+{
+    float quilos;
+    float metrosEmPes;
+    float metros;
+    float gramas;
+
+    gramas = 947;
+    quilo = converterGramasParaQuilo(gramas);
+
+    metros = 0.19;
+    metrosEmPes = converterMetrosParaPes(metros);
+
+    float metrosEmPolegadas;
+
+    metros = 8.12;
+    metrosEmPolegadas = converterMetrosParaPolegadas(metros);
+
+    metros = 2.72;
+    metrosEmPolegadas = converterMetrosParaPolegadas(metros);
+
+    float quilogramas;
+    float quilogramasEmLibras;
+
+    quilogramas = 78.50;
+    quilogramasEmLibras = converterQuilogramasParaLibras(quilogramas);
+
+    quilogramas = 4.50;
+    quilogramasEmLibras = converterQuilogramasParaLibras(quilogramas);
+
+    float oncas;
+    float oncasEmGramas;
+
+    oncas = 8.50;
+    oncasEmGramas = converterOncasParaGramas(oncas);
+
+    oncas = 12.92;
+    oncasEmGramas = converterOncasParaGramas(oncas);
+
+    int quilocalorias;
+
+    quilocalorias = 789;
+    oncasEmGramas = converterQuilocaloriasParaQuilojoules(quilocalorias);
+
+    quilocalorias = 1281;
+    oncasEmGramas = converterQuilocaloriasParaQuilojoules(quilocalorias);
+}
+
+
+def converterGramasParaQuilo(float gramas)
+{
+    float quilo;
+    quilo = gramas/1000;
+
+    print gramas;
+    print "G em quilos é igual à: ";
+    print quilo;
+
+    return;
+}
+
+
+def converterMetrosParaPolegadas(float metros) {
+    float polegadas;
+    polegadas = metros * 39.3701;
+
+    print metros;
+    print "m em polegadas é igual à:";
+    print polegadas;
+
+    return;
+}
+
+
+def converterQuilogramasParaLibras(float quilogramas) {
+    float libras;
+    libras = quilogramas * 2.205;
+
+    print quilogramas;
+    print "Kg em libras é igual à:";
+    print libras;
+
+    return;
+}
+
+
+def converterOncasParaGramas(float oncas) {
+    float gramas;
+    gramas = oncas * 28.35;
+
+    print oncas;
+    print "onças em gramas é igual à:";
+    print gramas;
+
+    return;
+}
+
+
+def converterQuilocaloriasParaQuilojoules(float quilocalorias) {
+    float quilocalorias;
+    quilocalorias = quilocalorias * 4.184;
+
+    print quilocalorias;
+    print "quilocalorias em quilojoules é igual à:";
+    print quilocaloriasEmQuilojoules;
+
+    return;
+}
