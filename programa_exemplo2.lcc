@@ -1,102 +1,103 @@
 def main() {
-    int ladoQuadrado;
-    int areaQuadrado;
-    int perimetroQuadrado;
+    int auxA;
+    int auxB;
+    int valorDeRetorno;
 
-    ladoQuadrado = 5;
-    areaQuadrado = calculaAreaDeQuadrado(ladoQuadrado);
-    perimetroQuadrado = calculaPerimetroDeQuadrado(ladoQuadrado);
+    print "Se 10 é primo:";
+    auxA = 10;
+    valorDeRetorno = ehPrimo(auxA);
 
-    ladoQuadrado = 7;
-    areaQuadrado = calculaAreaDeQuadrado(ladoQuadrado);
-    perimetroQuadrado = calculaPerimetroDeQuadrado(ladoQuadrado);
+    print "Se 7 é primo:";
+    auxA = 7;
+    valorDeRetorno = ehPrimo(auxA);
 
-    ladoQuadrado = 21;
-    areaQuadrado = calculaAreaDeQuadrado(ladoQuadrado);
-    perimetroQuadrado = calculaPerimetroDeQuadrado(ladoQuadrado);
+    auxA = 18;
+    auxB = 3;
+    print "18 elevado a 3:";
+    valorDeRetorno = potencia(auxA, auxB);
 
-    ladoQuadrado = 2;
-    areaQuadrado = calculaAreaDeQuadrado(ladoQuadrado);
-    perimetroQuadrado = calculaPerimetroDeQuadrado(ladoQuadrado);
+    auxA = 5;
+    auxB = 2;
+    print "5 elevado a 2";
+    valorDeRetorno = potencia(auxA, auxB);
 
-    int ladoARetangulo;
-    int ladoBRetangulo;
-    int areaRetangulo;
-    int perimetroRetangulo;
+    auxA = 14400;
+    print "raiz quadrada de 14400";
+    valorDeRetorno = raizQuadrada(auxA);
 
-    ladoARetangulo = 6;
-    ladoBRetangulo = 10;
-    areaRetangulo = calculaAreaDeRetangulo(ladoARetangulo, ladoBRetangulo);
-    perimetroRetangulo = calculaPerimetroDeRetangulo(ladoARetangulo, ladoBRetangulo);
+    auxA = 16 ;
+    print "raiz quadrada de 16";
+    valorDeRetorno = raizQuadrada(auxA);
 
-    ladoARetangulo = 5;
-    ladoBRetangulo = 18;
-    areaRetangulo = calculaAreaDeRetangulo(ladoARetangulo, ladoBRetangulo);
-    perimetroRetangulo = calculaPerimetroDeRetangulo(ladoARetangulo, ladoBRetangulo);
-
-    ladoARetangulo = 3;
-    ladoBRetangulo = 3;
-    areaRetangulo = calculaAreaDeRetangulo(ladoARetangulo, ladoBRetangulo);
-    perimetroRetangulo = calculaPerimetroDeRetangulo(ladoARetangulo, ladoBRetangulo);
-
-    ladoARetangulo = 2812;
-    ladoBRetangulo = 1288;
-    areaRetangulo = calculaAreaDeRetangulo(ladoARetangulo, ladoBRetangulo);
-    perimetroRetangulo = calculaPerimetroDeRetangulo(ladoARetangulo, ladoBRetangulo);
+    auxA = 25;
+    print "raiz quadrada de 25";
+    valorDeRetorno = raizQuadrada(auxA);
 }
 
 
-def calculaAreaDeQuadrado(int lado) {
-  int area;
-  area = lado * lado;
+def ehPrimo(int n) {
+    if(n <= 3){
+        if (n > 1) {
+            print "É primo";
+        } else {
+            print "Não é primo";
+        }
+        return;
+    }
 
-  print "Área do quadrado de lado ";
-  print lado;
-  print ": ";
-  print area;
+    if (n % 2 == 0) {
+        print "Não é primo";
+        return;
+    }
 
-  return;
+     if (n % 3 == 0) {
+        print "Não é primo";
+        return;
+     }
+
+    int i;
+    for (i = 5; n >= (i * i); i = i + 6){
+        if ((n % i) == 0) {
+            print "Não é primo";
+            return;
+        }
+        int tmp;
+        tmp = i + 2;
+
+        if ((n % tmp) == 0) {
+            print "Não é primo";
+            return;
+        }
+    }
+
+    print "É primo";
+    return;
 }
 
 
-def calculaPerimetroDeQuadrado(int lado) {
-  int perimetro;
-  perimetro = lado * 4;
+def potencia(int n, int e) {
+    int output;
+    output = 1;
+    int i;
+    for (i = 0; i < e; i = i + 1) {
+        output = output * n;
+    }
 
-  print "Perímetro do quadrado de lado ";
-  print lado;
-  print ": ";
-  print perimetro;
+    print "O resultado da operação é ";
+    print output;
 
-  return;
+    return;
 }
 
 
-def calculaAreaDeRetangulo(int ladoA, int ladoB) {
-  int area;
-  area = ladoA * ladoB;
+def raizQuadrada(int n) {
+    float result;
 
-  print "Área do retangulo de lado ";
-  print ladoA;
-  print " e lado ";
-  print ladoB;
-  print ": ";
-  print area;
+    result = n * (1/2);
+    print("A raiz quadrada de");
+    print(n);
+    print("é");
+    print(result);
 
-  return;
-}
-
-
-def calculaPerimetroDeRetangulo(int ladoA, int ladoB) {
-  int perimetro;
-  perimetro = ladoA * 2 + ladoB * 2;
-
-  print "Perímetro do retangulo de lado ";
-  print ladoA;
-  print " e lado ";
-  print ladoB;
-  print ": ";
-  print perimetro;
-
-  return;
+    return;
 }

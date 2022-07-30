@@ -1,108 +1,110 @@
-def main()
-{
-    float quilos;
-    float metrosEmPes;
-    float metros;
-    float gramas;
-
-    gramas = 947;
-    quilo = converterGramasParaQuilo(gramas);
-
-    metros = 0.19;
-    metrosEmPes = converterMetrosParaPes(metros);
-
-    float metrosEmPolegadas;
-
-    metros = 8.12;
-    metrosEmPolegadas = converterMetrosParaPolegadas(metros);
-
-    metros = 2.72;
-    metrosEmPolegadas = converterMetrosParaPolegadas(metros);
-
-    float quilogramas;
-    float quilogramasEmLibras;
-
-    quilogramas = 78.50;
-    quilogramasEmLibras = converterQuilogramasParaLibras(quilogramas);
-
-    quilogramas = 4.50;
-    quilogramasEmLibras = converterQuilogramasParaLibras(quilogramas);
-
-    float oncas;
-    float oncasEmGramas;
-
-    oncas = 8.50;
-    oncasEmGramas = converterOncasParaGramas(oncas);
-
-    oncas = 12.92;
-    oncasEmGramas = converterOncasParaGramas(oncas);
-
-    int quilocalorias;
-
-    quilocalorias = 789;
-    oncasEmGramas = converterQuilocaloriasParaQuilojoules(quilocalorias);
-
-    quilocalorias = 1281;
-    oncasEmGramas = converterQuilocaloriasParaQuilojoules(quilocalorias);
+def area_triangulo(){
+  float a; float b; float c;
+  print "Calcula área de um triângulo";
+  print "Favor informe a largura do triângulo";
+  read a;
+  print "Favor informe a altura do triângulo";
+  read b;
+  c = (a * b) /2;
+  print "área do triângulo informado" + c;
 }
 
 
-def converterGramasParaQuilo(float gramas)
-{
-    float quilo;
-    quilo = gramas/1000;
+def area_quadrado(){
+  float a; float c;
+  print "Calcula área de um quadrado";
+  print "Favor informe a medida do lado do quadrado";
+  read a;
+  b = a * a;
+  print "área do quadrado informado" + b;
+}
 
-    print gramas;
-    print "G em quilos é igual à: ";
-    print quilo;
-
-    return;
+def area_retangulo(){
+  float a; float b; float c;
+  print "Calcula área de um retângulo";
+  print "Favor informe a largura do retângulo";
+  read a;
+  print "Favor informe a altura do retângulo";
+  read b;
+  c = a * b;
+  print "área do retângulo informado" + c;
 }
 
 
-def converterMetrosParaPolegadas(float metros) {
-    float polegadas;
-    polegadas = metros * 39.3701;
-
-    print metros;
-    print "m em polegadas é igual à:";
-    print polegadas;
-
-    return;
+def area_trapezio(){
+  float a; float b; float c; float d;
+  print "Calcula área de um trapézio";
+  print "Favor informe a largura da base maior do trapézio";
+  read a;
+  print "Favor informe a largura da base menor do trapézio";
+  read b;
+  print "Favor informe a altura do trapézio";
+  read c;
+  d = ((a+b) * h)/2;
+  print "área do trapézio informado" + c;
 }
 
 
-def converterQuilogramasParaLibras(float quilogramas) {
-    float libras;
-    libras = quilogramas * 2.205;
+def area_circulo(){
+  float a;
+  print "Calcula área de um circulo";
+  print "Favor informe a largura da base maior do circulo";
+  read a;
+  a = (a * a) * math_pi;
+  print "área do circulo informado" + c;
+}
 
-    print quilogramas;
-    print "Kg em libras é igual à:";
-    print libras;
-
-    return;
+def area_losango(){
+  float a; float b; float c;
+  print "Calcula área de um losango";
+  print "Favor informe a uma diagonal";
+  read a;
+  print "Favor informe a outra diagonal";
+  read b;
+  c = (a * b)/2;
+  print "área do losango informado" + c;
 }
 
 
-def converterOncasParaGramas(float oncas) {
-    float gramas;
-    gramas = oncas * 28.35;
+def calculadora_geometrica(){
+  int i;
+  int aux;
+  for (i = 0; i > -1; i = i+1){
 
-    print oncas;
-    print "onças em gramas é igual à:";
-    print gramas;
-
-    return;
-}
-
-
-def converterQuilocaloriasParaQuilojoules(float quilocalorias) {
-    float quilocalorias;
-    quilocalorias = quilocalorias * 4.184;
-
-    print quilocalorias;
-    print "quilocalorias em quilojoules é igual à:";
-    print quilocaloriasEmQuilojoules;
-
-    return;
+    int entrada;
+    if (i == 0){
+      print "Bem vindo a calculadora geométrica";
+    }
+    print "Se você quer calcular a área de uma figura digite 1";
+    print "Se você deseja sair digite 9";
+    read entrada;
+    if (entrada == 1) {
+      print "Informe a figura que deseja calcular a área";
+      print "quadrado - 1";
+      print "triangulo - 2";
+      print "retângulo - 3";
+      print "trapézio - 4";
+      print "círculo - 5";
+      print "losango - 6";
+      print "sair - 9";
+      read entrada;
+      if (entrada == 1){
+        aux = area_quadrado();
+      } else if (entrada == 2){
+        aux = area_triangulo();
+      } else if (entrada == 3){
+        aux = area_retangulo();
+      } else if (entrada == 4){
+        aux = area_trapezio();
+      } else if (entrada == 5){
+        aux = area_circulo();
+      } else if (entrada == 6){
+        aux = area_losango();
+      } else if (entrada == 9){
+        break;
+      }
+    } else if (entrada == 9)
+      break;
+  } 
+  print "Muito obrigado por usar a calculadora geométrica";
 }

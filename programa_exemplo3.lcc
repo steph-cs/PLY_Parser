@@ -1,103 +1,108 @@
-def main() {
-    int auxA;
-    int auxB;
-    int valorDeRetorno;
+def main()
+{
+    float quilos;
+    float metrosEmPes;
+    float metros;
+    float gramas;
 
-    print "Se 10 é primo:";
-    auxA = 10;
-    valorDeRetorno = ehPrimo(auxA);
+    gramas = 947;
+    quilo = converterGramasParaQuilo(gramas);
 
-    print "Se 7 é primo:";
-    auxA = 7;
-    valorDeRetorno = ehPrimo(auxA);
+    metros = 0.19;
+    metrosEmPes = converterMetrosParaPes(metros);
 
-    auxA = 18;
-    auxB = 3;
-    print "18 elevado a 3:";
-    valorDeRetorno = potencia(auxA, auxB);
+    float metrosEmPolegadas;
 
-    auxA = 5;
-    auxB = 2;
-    print "5 elevado a 2";
-    valorDeRetorno = potencia(auxA, auxB);
+    metros = 8.12;
+    metrosEmPolegadas = converterMetrosParaPolegadas(metros);
 
-    auxA = 14400;
-    print "raiz quadrada de 14400";
-    valorDeRetorno = raizQuadrada(auxA);
+    metros = 2.72;
+    metrosEmPolegadas = converterMetrosParaPolegadas(metros);
 
-    auxA = 16 ;
-    print "raiz quadrada de 16";
-    valorDeRetorno = raizQuadrada(auxA);
+    float quilogramas;
+    float quilogramasEmLibras;
 
-    auxA = 25;
-    print "raiz quadrada de 25";
-    valorDeRetorno = raizQuadrada(auxA);
+    quilogramas = 78.50;
+    quilogramasEmLibras = converterQuilogramasParaLibras(quilogramas);
+
+    quilogramas = 4.50;
+    quilogramasEmLibras = converterQuilogramasParaLibras(quilogramas);
+
+    float oncas;
+    float oncasEmGramas;
+
+    oncas = 8.50;
+    oncasEmGramas = converterOncasParaGramas(oncas);
+
+    oncas = 12.92;
+    oncasEmGramas = converterOncasParaGramas(oncas);
+
+    int quilocalorias;
+
+    quilocalorias = 789;
+    oncasEmGramas = converterQuilocaloriasParaQuilojoules(quilocalorias);
+
+    quilocalorias = 1281;
+    oncasEmGramas = converterQuilocaloriasParaQuilojoules(quilocalorias);
 }
 
 
-def ehPrimo(int n) {
-    if(n <= 3){
-        if (n > 1) {
-            print "É primo";
-        } else {
-            print "Não é primo";
-        }
-        return;
-    }
+def converterGramasParaQuilo(float gramas)
+{
+    float quilo;
+    quilo = gramas/1000;
 
-    if (n % 2 == 0) {
-        print "Não é primo";
-        return;
-    }
-
-     if (n % 3 == 0) {
-        print "Não é primo";
-        return;
-     }
-
-    int i;
-    for (i = 5; n >= (i * i); i = i + 6){
-        if ((n % i) == 0) {
-            print "Não é primo";
-            return;
-        }
-        int tmp;
-        tmp = i + 2;
-
-        if ((n % tmp) == 0) {
-            print "Não é primo";
-            return;
-        }
-    }
-
-    print "É primo";
-    return;
-}
-
-
-def potencia(int n, int e) {
-    int output;
-    output = 1;
-    int i;
-    for (i = 0; i < e; i = i + 1) {
-        output = output * n;
-    }
-
-    print "O resultado da operação é ";
-    print output;
+    print gramas;
+    print "G em quilos é igual à: ";
+    print quilo;
 
     return;
 }
 
 
-def raizQuadrada(int n) {
-    float result;
+def converterMetrosParaPolegadas(float metros) {
+    float polegadas;
+    polegadas = metros * 39.3701;
 
-    result = n * (1/2);
-    print("A raiz quadrada de");
-    print(n);
-    print("é");
-    print(result);
+    print metros;
+    print "m em polegadas é igual à:";
+    print polegadas;
+
+    return;
+}
+
+
+def converterQuilogramasParaLibras(float quilogramas) {
+    float libras;
+    libras = quilogramas * 2.205;
+
+    print quilogramas;
+    print "Kg em libras é igual à:";
+    print libras;
+
+    return;
+}
+
+
+def converterOncasParaGramas(float oncas) {
+    float gramas;
+    gramas = oncas * 28.35;
+
+    print oncas;
+    print "onças em gramas é igual à:";
+    print gramas;
+
+    return;
+}
+
+
+def converterQuilocaloriasParaQuilojoules(float quilocalorias) {
+    float quilocalorias;
+    quilocalorias = quilocalorias * 4.184;
+
+    print quilocalorias;
+    print "quilocalorias em quilojoules é igual à:";
+    print quilocaloriasEmQuilojoules;
 
     return;
 }
